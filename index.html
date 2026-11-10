@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Jingle Balls — Custom Jingle Balls for Every Occasion</title>
+  <meta name="description" content="Design your own custom jingle balls. Choose colors, sounds, and engravings — the perfect personalized gift for the holidays." />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --bg-soft: #12151d;
+      --card: #161a24;
+      --border: #232936;
+      --text: #e8eaf0;
+      --muted: #9aa3b5;
+      --accent: #d4af37;
+      --accent-2: #e05555;
+      --accent-3: #4f8ef7;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 13, 18, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo .ball {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffe98a, var(--accent) 60%, #8a6d1c);
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.5);
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-8deg); }
+      50% { transform: rotate(8deg); }
+    }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f2d574, var(--accent));
+      color: #1a1405;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 90px 24px 90px;
+      background:
+        radial-gradient(600px 300px at 20% 10%, rgba(212, 175, 55, 0.12), transparent),
+        radial-gradient(600px 300px at 80% 20%, rgba(224, 85, 85, 0.10), transparent),
+        radial-gradient(500px 300px at 50% 90%, rgba(79, 142, 247, 0.10), transparent);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, #f2d574, var(--accent), #e05555);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 540px;
+      margin: 0 0 36px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.12);
+      transform: rotate(2deg);
+      transition: transform 0.3s;
+    }
+
+    .hero-image:hover { transform: rotate(0deg) scale(1.02); }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-image figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 18px;
+      background: linear-gradient(transparent, rgba(11, 13, 18, 0.9));
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Floating balls */
+    .ball-float {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: floaty 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-24px) rotate(12deg); }
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 80px 0; }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 52px;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 26px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .feature:hover { transform: translateY(-6px); border-color: var(--accent); }
+
+    .feature .icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: inline-block;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    }
+
+    .feature h3 { margin-bottom: 8px; font-size: 1.15rem; }
+    .feature p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Builder / preview */
+    .builder {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+    }
+
+    .builder h2 { font-size: 1.9rem; margin-bottom: 10px; }
+    .builder > div > p { color: var(--muted); margin-bottom: 28px; }
+
+    .preview-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.08), transparent 70%);
+    }
+
+    .jingle-ball {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+      background: radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a);
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.35), inset 0 -20px 40px rgba(0, 0, 0, 0.35);
+      transition: background 0.4s;
+      animation: bob 4s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .jingle-ball::before {
+      content: "";
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 26px;
+      background: linear-gradient(180deg, #c0392b, #7f241b);
+      border-radius: 4px;
+    }
+
+    .jingle-ball::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: rgba(20, 15, 0, 0.55);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      padding: 30px;
+    }
+
+    .controls { display: grid; gap: 22px; }
+
+    .control label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .swatches { display: flex; gap: 12px; }
+
+    .swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+
+    .swatch:hover { transform: scale(1.12); }
+    .swatch.active { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2); }
+
+    .builder input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .builder input[type="text"]:focus { border-color: var(--accent); }
+
+    .radio-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .radio-pill {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .radio-pill:hover { color: var(--text); }
+    .radio-pill.active { border-color: var(--accent); color: var(--accent); background: rgba(212,175,55,0.08); }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .mini-ball {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      box-shadow: inset 0 -12px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .gallery-card h4 { margin-bottom: 4px; }
+    .gallery-card span { color: var(--muted); font-size: 0.85rem; }
+
+    /* Pricing */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+    }
+
+    .badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #f2d574, var(--accent));
+      color: #1a1405;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .price-card h3 { font-size: 1.1rem; color: var(--muted); margin-bottom: 8px; }
+    .price-card .price { font-size: 2.4rem; font-weight: 800; margin-bottom: 20px; }
+    .price-card .price small { font-size: 0.9rem; color: var(--muted); font-weight: 400; }
+    .price-card ul { list-style: none; margin-bottom: 28px; flex: 1; }
+    .price-card li { padding: 7px 0; color: var(--muted); font-size: 0.95rem; }
+    .price-card li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer .socials { margin-top: 14px; display: flex; justify-content: center; gap: 22px; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 800px) {
+      .builder { grid-template-columns: 1fr; padding: 32px 24px; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-cta { justify-content: center; }
+      .hero-image { max-width: 420px; margin: 0 auto; transform: none; }
+      .hero-image:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#"><span class="ball"></span>Super Jingle Balls</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#customize">Customize</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+      <a href="#customize" class="btn btn-gold">Design Yours</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <span class="ball-float" style="width:40px;height:40px;top:12%;left:4%;background:radial-gradient(circle at 35% 30%,#ffb3b3,#e05555 60%,#7a2626);"></span>
+      <span class="ball-float" style="width:28px;height:28px;top:18%;right:6%;background:radial-gradient(circle at 35% 30%,#bcd4ff,#4f8ef7 60%,#1f4a99);animation-delay:1.2s;"></span>
+      <span class="ball-float" style="width:22px;height:22px;bottom:14%;left:14%;background:radial-gradient(circle at 35% 30%,#d6ffe0,#3fbf6f 60%,#1c6b3a);animation-delay:2.1s;"></span>
+      <span class="ball-float" style="width:34px;height:34px;bottom:20%;right:4%;background:radial-gradient(circle at 35% 30%,#ffe98a,#d4af37 60%,#8a6d1c);animation-delay:0.6s;"></span>
+
+      <div class="hero-inner">
+        <div>
+          <h1>Make Some Noise.<br /><span class="highlight">Your Jingle, Your Way.</span></h1>
+          <p>Design custom jingle balls with your colors, your message, and your signature sound. Handcrafted, holiday-ready, and impossible to ignore.</p>
+          <div class="hero-cta">
+            <a href="#customize" class="btn btn-gold">Start Designing</a>
+            <a href="#gallery" class="btn btn-ghost">See the Gallery</a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="Jingle-ball-example/jingle-custom-balls-web.jpg" alt="Custom personalized Christmas jingle balls with red bows hanging on a tree" loading="eager" />
+          <figcaption>Adornos Navideños Personalizados — ¡Pide los tuyos ahora!</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title reveal">Why Custom Jingle Balls?</h2>
+        <p class="section-sub reveal">Not just decoration — a statement. Here's what makes ours special.</p>
+        <div class="features">
+          <div class="feature reveal">
+            <span class="icon">🎨</span>
+            <h3>Full Color Control</h3>
+            <p>Pick from 12 hand-mixed lacquer finishes — metallic, matte, glitter, or glow-in-the-dark.</p>
+          </div>
+          <div class="feature reveal">
+            <span class="icon">🔔</span>
+            <h3>Signature Sound</h3>
+            <p>Choose your chime: classic silver, deep bronze, or soft sleigh. Tuned by hand, tested by ear.</p>
+          </div>
+          <div class="feature reveal">
+            <span class="icon">✍️</span>
+            <h3>Laser Engraving</h3>
+            <p>Add names, dates, or inside jokes. Engraved with precision that lasts for decades.</p>
+          </div>
+          <div class="feature reveal">
+            <span class="icon">🎁</span>
+            <h3>Gift-Ready Packaging</h3>
+            <p>Every ball arrives in a velvet-lined keepsake box with a handwritten-style card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMIZE / BUILDER -->
+    <section id="customize">
+      <div class="container">
+        <h2 class="section-title reveal">Design Your Ball</h2>
+        <p class="section-sub reveal">Play with it. Your design updates live.</p>
+
+        <div class="builder reveal">
+          <div class="preview-stage">
+            <div class="jingle-ball" id="previewBall" data-text="JINGLE!"></div>
+          </div>
+          <div>
+            <h2>Make it yours</h2>
+            <p>Every choice is rendered in real time — what you see is what jingles.</p>
+
+            <div class="controls">
+              <div class="control">
+                <label>Color</label>
+                <div class="swatches" id="swatches">
+                  <button class="swatch active" data-color="radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a)" data-glow="rgba(212,175,55,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a);" aria-label="Gold"></button>
+                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #ffb3b3, #e05555 55%, #7a2626)" data-glow="rgba(224,85,85,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffb3b3, #e05555 55%, #7a2626);" aria-label="Red"></button>
+                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #bcd4ff, #4f8ef7 55%, #1f4a99)" data-glow="rgba(79,142,247,0.35)" style="background:radial-gradient(circle at 35% 30%, #bcd4ff, #4f8ef7 55%, #1f4a99);" aria-label="Blue"></button>
+                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #d6ffe0, #3fbf6f 55%, #1c6b3a)" data-glow="rgba(63,191,111,0.35)" style="background:radial-gradient(circle at 35% 30%, #d6ffe0, #3fbf6f 55%, #1c6b3a);" aria-label="Green"></button>
+                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #f0f3ff, #aab4d4 55%, #4a5474)" data-glow="rgba(170,180,212,0.35)" style="background:radial-gradient(circle at 35% 30%, #f0f3ff, #aab4d4 55%, #4a5474);" aria-label="Silver"></button>
+                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #ffd9f2, #d668c4 55%, #6d2a62)" data-glow="rgba(214,104,196,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffd9f2, #d668c4 55%, #6d2a62);" aria-label="Pink"></button>
+                </div>
+              </div>
+
+              <div class="control">
+                <label for="engraving">Engraving</label>
+                <input type="text" id="engraving" maxlength="12" placeholder="JINGLE!" value="JINGLE!" />
+              </div>
+
+              <div class="control">
+                <label>Chime Tone</label>
+                <div class="radio-row" id="tones">
+                  <button class="radio-pill active" data-tone="Classic Silver">Classic Silver</button>
+                  <button class="radio-pill" data-tone="Deep Bronze">Deep Bronze</button>
+                  <button class="radio-pill" data-tone="Soft Sleigh">Soft Sleigh</button>
+                </div>
+              </div>
+
+              <div class="control">
+                <a href="#pricing" class="btn btn-gold" style="text-align:center;">Add to Cart — $19.99</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="container">
+        <h2 class="section-title reveal">Fresh From the Workshop</h2>
+        <p class="section-sub reveal">A few favorites our customers have jingled into the world.</p>
+        <div class="gallery">
+          <div class="gallery-card reveal">
+            <div class="mini-ball" style="background:radial-gradient(circle at 35% 30%, #bcd4ff, #4f8ef7 55%, #1f4a99);"></div>
+            <h4>"Grandpa's Golf Ball"</h4>
+            <span>Engraved · Deep Bronze chime</span>
+          </div>
+          <div class="gallery-card reveal">
+            <div class="mini-ball" style="background:radial-gradient(circle at 35% 30%, #ffb3b3, #e05555 55%, #7a2626);"></div>
+            <h4>"Naughty List Nominee"</h4>
+            <span>Glitter finish · Classic Silver</span>
+          </div>
+          <div class="gallery-card reveal">
+            <div class="mini-ball" style="background:radial-gradient(circle at 35% 30%, #d6ffe0, #3fbf6f 55%, #1c6b3a);"></div>
+            <h4>"Pickle Ball Champ"</h4>
+            <span>Matte finish · Soft Sleigh</span>
+          </div>
+          <div class="gallery-card reveal">
+            <div class="mini-ball" style="background:radial-gradient(circle at 35% 30%, #ffd9f2, #d668c4 55%, #6d2a62);"></div>
+            <h4>"Prom-posal '24"</h4>
+            <span>Engraved date · Classic Silver</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-title reveal">Simple Pricing</h2>
+        <p class="section-sub reveal">One ball or a whole choir — there's a tier for you.</p>
+        <div class="pricing">
+          <div class="price-card reveal">
+            <h3>Solo Jingle</h3>
+            <div class="price">$19.99 <small>/ ball</small></div>
+            <ul>
+              <li>1 custom jingle ball</li>
+              <li>Any color + chime</li>
+              <li>Up to 12 engraved characters</li>
+              <li>Keepsake box included</li>
+            </ul>
+            <a href="#customize" class="btn btn-ghost">Start Designing</a>
+          </div>
+          <div class="price-card featured reveal">
+            <span class="badge">Most Popular</span>
+            <h3>Family Pack</h3>
+            <div class="price">$49.99 <small>/ 4 balls</small></div>
+            <ul>
+              <li>4 custom jingle balls</li>
+              <li>Mix colors &amp; chimes freely</li>
+              <li>Engraving on every ball</li>
+              <li>Free shipping</li>
+              <li>Gift wrap upgrade</li>
+            </ul>
+            <a href="#customize" class="btn btn-gold">Get the Pack</a>
+          </div>
+          <div class="price-card reveal">
+            <h3>Corporate Choir</h3>
+            <div class="price">$199 <small>/ 20 balls</small></div>
+            <ul>
+              <li>20 custom jingle balls</li>
+              <li>Logo engraving</li>
+              <li>Dedicated design review</li>
+              <li>Bulk shipping tracked</li>
+            </ul>
+            <a href="#customize" class="btn btn-ghost">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Super Jingle Balls. All rights reserved. Jingle responsibly.</p>
+      <div class="socials">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Etsy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Live preview: color swatches
+    const ball = document.getElementById("previewBall");
+    const swatches = document.querySelectorAll("#swatches .swatch");
+    swatches.forEach((s) =>
+      s.addEventListener("click", () => {
+        swatches.forEach((x) => x.classList.remove("active"));
+        s.classList.add("active");
+        ball.style.background = s.dataset.color;
+        ball.style.boxShadow = `0 0 60px ${s.dataset.glow}, inset 0 -20px 40px rgba(0,0,0,0.35)`;
+      })
+    );
+
+    // Live preview: engraving text
+    const engraving = document.getElementById("engraving");
+    engraving.addEventListener("input", () => {
+      ball.dataset.text = engraving.value || "JINGLE!";
+    });
+
+    // Chime tone pills
+    document.querySelectorAll("#tones .radio-pill").forEach((p) =>
+      p.addEventListener("click", () => {
+        document.querySelectorAll("#tones .radio-pill").forEach((x) => x.classList.remove("active"));
+        p.classList.add("active");
+      })
+    );
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        }),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
