@@ -441,6 +441,43 @@
       letter-spacing: 1px;
     }
 
+    /* Mercado Libre CTA */
+    .meli-cta {
+      background:
+        radial-gradient(400px 200px at 15% 20%, rgba(255, 230, 0, 0.10), transparent),
+        radial-gradient(400px 200px at 85% 80%, rgba(52, 131, 250, 0.12), transparent),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .meli-cta h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .meli-cta .meli-desc { color: var(--muted); max-width: 520px; }
+    .meli-cta .meli-perks {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .meli-cta .meli-perks li { color: var(--muted); font-size: 0.9rem; }
+    .meli-cta .meli-perks li::before { content: "✓ "; color: #3483fa; font-weight: 700; }
+
+    .btn-meli {
+      background: #ffe600;
+      color: #2d3277;
+      box-shadow: 0 4px 20px rgba(255, 230, 0, 0.25);
+      white-space: nowrap;
+    }
+
+    .btn-meli:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255, 230, 0, 0.4); }
+
     .price-card h3 { font-size: 1.1rem; color: var(--muted); margin-bottom: 8px; }
     .price-card .price { font-size: 2.4rem; font-weight: 800; margin-bottom: 20px; }
     .price-card .price small { font-size: 0.9rem; color: var(--muted); font-weight: 400; }
@@ -486,6 +523,7 @@
           <li><a href="#features" data-i18n="nav.features">Características</a></li>
           <li><a href="#customize" data-i18n="nav.customize">Personaliza</a></li>
           <li><a href="#gallery" data-i18n="nav.gallery">Galería</a></li>
+          <li><a href="#comprar" data-i18n="nav.buy">Comprar</a></li>
           <li><a href="#pricing" data-i18n="nav.pricing">Precios</a></li>
         </ul>
       </nav>
@@ -592,7 +630,7 @@
               </div>
 
               <div class="control">
-                <a href="#pricing" class="btn btn-gold" style="text-align:center;" data-i18n="build.cart">Agregar al Carrito — $19.99</a>
+                <a href="#comprar" class="btn btn-gold" style="text-align:center;" data-i18n="build.cart">Agregar al Carrito — $19.99</a>
               </div>
             </div>
           </div>
@@ -626,6 +664,32 @@
             <h4 data-i18n="gal4.name">«Petición de Prom '24»</h4>
             <span data-i18n="gal4.desc">Fecha grabada · Plata clásica</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERCADO LIBRE -->
+    <section id="comprar">
+      <div class="container">
+        <h2 class="section-title reveal" data-i18n="meli.title">Compra por Mercado Libre</h2>
+        <p class="section-sub reveal" data-i18n="meli.sub">Compra fácil y seguro con la plataforma líder de Latinoamérica.</p>
+        <div class="meli-cta reveal">
+          <div>
+            <h3 data-i18n="meli.h3">Esferas Navideñas Personalizadas — Pack x 5</h3>
+            <p class="meli-desc" data-i18n="meli.desc">Adquiere tu pack de 5 esferas personalizadas con foto directamente en nuestro official store de Mercado Libre. Mismo producto, misma calidad, compra protegida.</p>
+            <ul class="meli-perks">
+              <li data-i18n="meli.perk1">Compra Protegida</li>
+              <li data-i18n="meli.perk2">Envíos a todo el país</li>
+              <li data-i18n="meli.perk3">Hasta 12 cuotas</li>
+            </ul>
+          </div>
+          <a
+            class="btn btn-meli"
+            href="https://www.mercadolibre.com.ar/esferas-navidenas-personalizadas-con-foto-pack-x-5-n-8/up/MLAU5810268611?pdp_filters=item_id%3AMLA2276208093&matt_tool=89488245"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="meli.cta"
+          >Comprar en Mercado Libre</a>
         </div>
       </div>
     </section>
@@ -697,6 +761,7 @@
         "nav.features": "Características",
         "nav.customize": "Personaliza",
         "nav.gallery": "Galería",
+        "nav.buy": "Comprar",
         "nav.pricing": "Precios",
         "nav.cta": "Diseña la Tuya",
         "hero.h1a": "Haz Ruido.",
@@ -744,6 +809,14 @@
         "gal3.desc": "Acabado mate · Trineo suave",
         "gal4.name": "«Petición de Prom '24»",
         "gal4.desc": "Fecha grabada · Plata clásica",
+        "meli.title": "Compra por Mercado Libre",
+        "meli.sub": "Compra fácil y seguro con la plataforma líder de Latinoamérica.",
+        "meli.h3": "Esferas Navideñas Personalizadas — Pack x 5",
+        "meli.desc": "Adquiere tu pack de 5 esferas personalizadas con foto directamente en nuestro official store de Mercado Libre. Mismo producto, misma calidad, compra protegida.",
+        "meli.perk1": "Compra Protegida",
+        "meli.perk2": "Envíos a todo el país",
+        "meli.perk3": "Hasta 12 cuotas",
+        "meli.cta": "Comprar en Mercado Libre",
         "price.title": "Precios Sencillos",
         "price.sub": "Una bola o todo un coro — hay un plan para ti.",
         "price.badge": "Más Popular",
@@ -780,6 +853,7 @@
         "nav.features": "Features",
         "nav.customize": "Customize",
         "nav.gallery": "Gallery",
+        "nav.buy": "Buy",
         "nav.pricing": "Pricing",
         "nav.cta": "Design Yours",
         "hero.h1a": "Make Some Noise.",
@@ -827,6 +901,14 @@
         "gal3.desc": "Matte finish · Soft Sleigh",
         "gal4.name": "\"Prom-posal '24\"",
         "gal4.desc": "Engraved date · Classic Silver",
+        "meli.title": "Buy on Mercado Libre",
+        "meli.sub": "Easy, secure checkout on Latin America's leading marketplace.",
+        "meli.h3": "Personalized Christmas Ornaments — 5-Pack",
+        "meli.desc": "Get your pack of 5 photo-personalized ornaments directly from our official Mercado Libre store. Same product, same quality, buyer protection included.",
+        "meli.perk1": "Buyer Protection",
+        "meli.perk2": "Nationwide shipping",
+        "meli.perk3": "Up to 12 installments",
+        "meli.cta": "Buy on Mercado Libre",
         "price.title": "Simple Pricing",
         "price.sub": "One ball or a whole choir — there's a tier for you.",
         "price.badge": "Most Popular",
