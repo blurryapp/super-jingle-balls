@@ -285,13 +285,48 @@
       animation: bob 4s ease-in-out infinite;
     }
 
-    @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-14px); }
+    .jingle-ball.photo-mode {
+      background: #10141c;
+      box-shadow: 0 0 60px rgba(79, 142, 247, 0.3), inset 0 -20px 40px rgba(0, 0, 0, 0.45);
     }
 
-    .jingle-ball::before {
+    .ball-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      opacity: 0.92;
+    }
+
+    /* Crystal glass overlays (photo mode only) */
+    .ball-photo-wrap.photo-mode::before {
       content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 22%, transparent 45%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .ball-photo-wrap.photo-mode::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 70% 85%, rgba(255,255,255,0.18) 0%, transparent 40%);
+      box-shadow: inset 0 -18px 36px rgba(0, 0, 0, 0.4), inset 0 10px 24px rgba(255, 255, 255, 0.12);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .jingle-ball.photo-mode::after {
+      content: none;
+    }
+
+    .ball-cap {
       position: absolute;
       top: -22px;
       left: 50%;
@@ -300,6 +335,12 @@
       height: 26px;
       background: linear-gradient(180deg, #c0392b, #7f241b);
       border-radius: 4px;
+      z-index: 4;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
     }
 
     .jingle-ball::after {
@@ -316,6 +357,40 @@
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
       padding: 30px;
     }
+
+    .photo-upload-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      justify-content: center;
+    }
+
+    .photo-upload-label:hover { border-color: var(--accent); color: var(--accent); }
+
+    .photo-remove {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      margin-top: 6px;
+    }
+
+    .photo-remove:hover { color: var(--accent-2); }
+
+    .photo-controls { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+
+    .photo-controls input[type="file"] { display: none; }
 
     .controls { display: grid; gap: 22px; }
 
@@ -480,7 +555,9 @@
 
         <div class="builder reveal">
           <div class="preview-stage">
-            <div class="jingle-ball" id="previewBall" data-text="¡TILÍN!"></div>
+            <div class="ball-photo-wrap" style="position: relative;">
+              <div class="jingle-ball" id="previewBall" data-text="¡TILÍN!"><div class="ball-cap"></div></div>
+            </div>
           </div>
           <div>
             <h2 data-i18n="build.h2">Hazla tuya</h2>
@@ -502,6 +579,15 @@
               <div class="control">
                 <label for="engraving" data-i18n="build.engraving">Grabado</label>
                 <input type="text" id="engraving" maxlength="12" placeholder="¡TILÍN!" data-i18n-placeholder="build.default" value="¡TILÍN!" />
+              </div>
+
+              <div class="control">
+                <label data-i18n="build.photo">Tu Foto (opcional)</label>
+                <div class="photo-controls">
+                  <label class="photo-upload-label" for="photoInput">📷 <span data-i18n="build.photoBtn">Subir Foto</span></label>
+                  <input type="file" id="photoInput" accept="image/*" />
+                  <button type="button" class="photo-remove" id="photoRemove" data-i18n="build.photoRemove" hidden>Quitar foto</button>
+                </div>
               </div>
 
               <div class="control">
@@ -594,6 +680,9 @@
         "build.p": "Cada elección se renderiza en tiempo real — lo que ves es lo que suena.",
         "build.color": "Color",
         "build.engraving": "Grabado",
+        "build.photo": "Tu Foto (opcional)",
+        "build.photoBtn": "Subir Foto",
+        "build.photoRemove": "Quitar foto",
         "build.default": "¡TILÍN!",
         "build.tone": "Tono de Campana",
         "build.tone1": "Plata Clásica",
@@ -649,6 +738,9 @@
         "build.p": "Every choice is rendered in real time — what you see is what jingles.",
         "build.color": "Color",
         "build.engraving": "Engraving",
+        "build.photo": "Your Photo (optional)",
+        "build.photoBtn": "Upload Photo",
+        "build.photoRemove": "Remove photo",
         "build.default": "JINGLE!",
         "build.tone": "Chime Tone",
         "build.tone1": "Classic Silver",
@@ -740,6 +832,40 @@
     engraving.addEventListener("input", () => {
       userEdited = true;
       ball.dataset.text = engraving.value || I18N[currentLang]["build.default"];
+    });
+
+    // Photo upload -> live crystal ball preview (local only, never uploaded)
+    const photoInput = document.getElementById("photoInput");
+    const photoRemove = document.getElementById("photoRemove");
+    const photoWrap = ball.parentElement;
+    let photoImg = null;
+
+    photoInput.addEventListener("change", () => {
+      const file = photoInput.files && photoInput.files[0];
+      if (!file || !file.type.startsWith("image/")) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (!photoImg) {
+          photoImg = document.createElement("img");
+          photoImg.className = "ball-photo";
+          photoImg.alt = "";
+          ball.prepend(photoImg);
+        }
+        photoImg.src = e.target.result;
+        ball.classList.add("photo-mode");
+        photoWrap.classList.add("photo-mode");
+        photoRemove.hidden = false;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    photoRemove.addEventListener("click", () => {
+      photoInput.value = "";
+      if (photoImg) { photoImg.remove(); photoImg = null; }
+      ball.classList.remove("photo-mode");
+      photoWrap.classList.remove("photo-mode");
+      photoRemove.hidden = true;
     });
 
     // Chime tone pills
