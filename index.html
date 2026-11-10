@@ -279,15 +279,13 @@
       height: 200px;
       border-radius: 50%;
       position: relative;
-      background: radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a);
-      box-shadow: 0 0 60px rgba(212, 175, 55, 0.35), inset 0 -20px 40px rgba(0, 0, 0, 0.35);
-      transition: background 0.4s;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.04) 45%, rgba(255,255,255,0.12) 100%), #171d29;
+      box-shadow:
+        0 0 60px rgba(148, 180, 255, 0.18),
+        inset 0 12px 30px rgba(255, 255, 255, 0.10),
+        inset 0 -22px 44px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.10);
       animation: bob 4s ease-in-out infinite;
-    }
-
-    .jingle-ball.photo-mode {
-      background: #10141c;
-      box-shadow: 0 0 60px rgba(79, 142, 247, 0.3), inset 0 -20px 40px rgba(0, 0, 0, 0.45);
     }
 
     .ball-photo {
@@ -297,33 +295,30 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      opacity: 0.92;
+      opacity: 0.88;
+      filter: saturate(0.95) brightness(0.95);
     }
 
-    /* Crystal glass overlays (photo mode only) */
-    .ball-photo-wrap.photo-mode::before {
+    /* Crystal glass overlays (always on) */
+    .ball-photo-wrap::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.12) 22%, transparent 45%);
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.10) 22%, transparent 45%);
       z-index: 5;
       pointer-events: none;
     }
 
-    .ball-photo-wrap.photo-mode::after {
+    .ball-photo-wrap::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at 70% 85%, rgba(255,255,255,0.18) 0%, transparent 40%);
-      box-shadow: inset 0 -18px 36px rgba(0, 0, 0, 0.4), inset 0 10px 24px rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 70% 85%, rgba(255,255,255,0.16) 0%, transparent 40%);
+      box-shadow: inset 0 -18px 36px rgba(0, 0, 0, 0.4), inset 0 10px 24px rgba(255, 255, 255, 0.10);
       z-index: 4;
       pointer-events: none;
-    }
-
-    .jingle-ball.photo-mode::after {
-      content: none;
     }
 
     .ball-cap {
@@ -353,9 +348,10 @@
       text-align: center;
       font-size: 1.3rem;
       font-weight: 700;
-      color: rgba(20, 15, 0, 0.55);
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      color: rgba(255, 255, 255, 0.75);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
       padding: 30px;
+      z-index: 3;
     }
 
     .photo-upload-label {
@@ -403,20 +399,6 @@
       margin-bottom: 8px;
     }
 
-    .swatches { display: flex; gap: 12px; }
-
-    .swatch {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.15s, border-color 0.15s;
-    }
-
-    .swatch:hover { transform: scale(1.12); }
-    .swatch.active { border-color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.2); }
-
     .builder input[type="text"] {
       width: 100%;
       padding: 12px 16px;
@@ -445,6 +427,35 @@
 
     .radio-pill:hover { color: var(--text); }
     .radio-pill.active { border-color: var(--accent); color: var(--accent); background: rgba(212,175,55,0.08); }
+
+    /* Mercado Libre CTA */
+    .meli-cta {
+      background:
+        radial-gradient(400px 200px at 15% 20%, rgba(255, 230, 0, 0.08), transparent),
+        radial-gradient(400px 200px at 85% 80%, rgba(52, 131, 250, 0.10), transparent),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .meli-cta h3 { font-size: 1.9rem; margin-bottom: 10px; }
+    .meli-cta .meli-desc { color: var(--muted); max-width: 520px; margin-bottom: 20px; font-size: 1.05rem; }
+
+    .meli-perks {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .meli-perks li { color: var(--muted); font-size: 0.95rem; }
+    .meli-perks li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
 
     /* Footer */
     footer {
@@ -565,18 +576,6 @@
 
             <div class="controls">
               <div class="control">
-                <label data-i18n="build.color">Color</label>
-                <div class="swatches" id="swatches">
-                  <button class="swatch active" data-color="radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a)" data-glow="rgba(212,175,55,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffefad, #d4af37 55%, #7c621a);" aria-label="Dorado" data-i18n-aria="sw.gold"></button>
-                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #ffb3b3, #e05555 55%, #7a2626)" data-glow="rgba(224,85,85,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffb3b3, #e05555 55%, #7a2626);" aria-label="Rojo" data-i18n-aria="sw.red"></button>
-                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #bcd4ff, #4f8ef7 55%, #1f4a99)" data-glow="rgba(79,142,247,0.35)" style="background:radial-gradient(circle at 35% 30%, #bcd4ff, #4f8ef7 55%, #1f4a99);" aria-label="Azul" data-i18n-aria="sw.blue"></button>
-                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #d6ffe0, #3fbf6f 55%, #1c6b3a)" data-glow="rgba(63,191,111,0.35)" style="background:radial-gradient(circle at 35% 30%, #d6ffe0, #3fbf6f 55%, #1c6b3a);" aria-label="Verde" data-i18n-aria="sw.green"></button>
-                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #f0f3ff, #aab4d4 55%, #4a5474)" data-glow="rgba(170,180,212,0.35)" style="background:radial-gradient(circle at 35% 30%, #f0f3ff, #aab4d4 55%, #4a5474);" aria-label="Plata" data-i18n-aria="sw.silver"></button>
-                  <button class="swatch" data-color="radial-gradient(circle at 35% 30%, #ffd9f2, #d668c4 55%, #6d2a62)" data-glow="rgba(214,104,196,0.35)" style="background:radial-gradient(circle at 35% 30%, #ffd9f2, #d668c4 55%, #6d2a62);" aria-label="Rosa" data-i18n-aria="sw.pink"></button>
-                </div>
-              </div>
-
-              <div class="control">
                 <label for="engraving" data-i18n="build.engraving">Grabado</label>
                 <input type="text" id="engraving" maxlength="12" placeholder="¡TILÍN!" data-i18n-placeholder="build.default" value="¡TILÍN!" />
               </div>
@@ -624,7 +623,7 @@
             </ul>
           </div>
           <a
-            class="btn btn-meli"
+            class="btn btn-gold"
             href="https://www.mercadolibre.com.ar/esferas-navidenas-personalizadas-con-foto-pack-x-5-n-8/up/MLAU5810268611?pdp_filters=item_id%3AMLA2276208093&matt_tool=89488245"
             target="_blank"
             rel="noopener noreferrer"
@@ -678,7 +677,6 @@
         "build.sub": "Juégatela. Tu diseño se actualiza en vivo.",
         "build.h2": "Hazla tuya",
         "build.p": "Cada elección se renderiza en tiempo real — lo que ves es lo que suena.",
-        "build.color": "Color",
         "build.engraving": "Grabado",
         "build.photo": "Tu Foto (opcional)",
         "build.photoBtn": "Subir Foto",
@@ -689,12 +687,6 @@
         "build.tone2": "Bronce Profundo",
         "build.tone3": "Trineo Suave",
         "build.cart": "Agregar al Carrito — $19.99",
-        "sw.gold": "Dorado",
-        "sw.red": "Rojo",
-        "sw.blue": "Azul",
-        "sw.green": "Verde",
-        "sw.silver": "Plata",
-        "sw.pink": "Rosa",
         "meli.title": "Compra por Mercado Libre",
         "meli.sub": "Compra fácil y seguro con la plataforma líder de Latinoamérica.",
         "meli.h3": "Esferas Navideñas Personalizadas — Pack x 5",
@@ -736,7 +728,6 @@
         "build.sub": "Play with it. Your design updates live.",
         "build.h2": "Make it yours",
         "build.p": "Every choice is rendered in real time — what you see is what jingles.",
-        "build.color": "Color",
         "build.engraving": "Engraving",
         "build.photo": "Your Photo (optional)",
         "build.photoBtn": "Upload Photo",
@@ -747,12 +738,6 @@
         "build.tone2": "Deep Bronze",
         "build.tone3": "Soft Sleigh",
         "build.cart": "Add to Cart — $19.99",
-        "sw.gold": "Gold",
-        "sw.red": "Red",
-        "sw.blue": "Blue",
-        "sw.green": "Green",
-        "sw.silver": "Silver",
-        "sw.pink": "Pink",
         "gal1.name": "\"Grandpa's Golf Ball\"",
         "gal2.name": "\"Naughty List Nominee\"",
         "gal3.name": "\"Pickle Ball Champ\"",
@@ -816,17 +801,6 @@
     langToggle.addEventListener("click", () => {
       setLang(currentLang === "es" ? "en" : "es");
     });
-
-    // Live preview: color swatches
-    const swatches = document.querySelectorAll("#swatches .swatch");
-    swatches.forEach((s) =>
-      s.addEventListener("click", () => {
-        swatches.forEach((x) => x.classList.remove("active"));
-        s.classList.add("active");
-        ball.style.background = s.dataset.color;
-        ball.style.boxShadow = `0 0 60px ${s.dataset.glow}, inset 0 -20px 40px rgba(0,0,0,0.35)`;
-      })
-    );
 
     // Live preview: engraving text
     engraving.addEventListener("input", () => {
