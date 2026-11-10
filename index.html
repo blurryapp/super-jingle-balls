@@ -224,33 +224,6 @@
       margin: 0 auto 52px;
     }
 
-    /* Features */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .feature {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 26px;
-      transition: transform 0.25s, border-color 0.25s;
-    }
-
-    .feature:hover { transform: translateY(-6px); border-color: var(--accent); }
-
-    .feature .icon {
-      font-size: 2rem;
-      margin-bottom: 14px;
-      display: inline-block;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
-    }
-
-    .feature h3 { margin-bottom: 8px; font-size: 1.15rem; }
-    .feature p { color: var(--muted); font-size: 0.95rem; }
-
     /* Builder / preview */
     .builder {
       display: grid;
@@ -496,7 +469,6 @@
       <a class="logo" href="#"><span class="ball"></span>Super Jingle Balls</a>
       <nav>
         <ul class="nav-links">
-          <li><a href="#features" data-i18n="nav.features">Características</a></li>
           <li><a href="#customize" data-i18n="nav.customize">Personaliza</a></li>
           <li><a href="#comprar" data-i18n="nav.buy">Comprar</a></li>
         </ul>
@@ -529,36 +501,6 @@
           <img src="Jingle-ball-example/jingle-custom-balls-web.jpg" alt="Bolas navideñas personalizadas con lazos rojos colgadas de un árbol" data-i18n-alt="hero.alt" loading="eager" />
           <figcaption data-i18n="hero.caption">Adornos Navideños Personalizados — ¡Pide los tuyos ahora!</figcaption>
         </figure>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section id="features">
-      <div class="container">
-        <h2 class="section-title reveal" data-i18n="feat.title">¿Por Qué Jingle Balls Personalizadas?</h2>
-        <p class="section-sub reveal" data-i18n="feat.sub">No son solo decoración — son una declaración. Esto es lo que hace especiales a las nuestras.</p>
-        <div class="features">
-          <div class="feature reveal">
-            <span class="icon">🎨</span>
-            <h3 data-i18n="feat1.title">Control Total de Color</h3>
-            <p data-i18n="feat1.p">Elige entre 12 acabados de laca mezclados a mano — metálico, mate, glitter o fosforescente.</p>
-          </div>
-          <div class="feature reveal">
-            <span class="icon">🔔</span>
-            <h3 data-i18n="feat2.title">Sonido Único</h3>
-            <p data-i18n="feat2.p">Elige tu campana: plata clásica, bronce profundo o trineo suave. Afinadas a mano, probadas a oído.</p>
-          </div>
-          <div class="feature reveal">
-            <span class="icon">✍️</span>
-            <h3 data-i18n="feat3.title">Grabado Láser</h3>
-            <p data-i18n="feat3.p">Agrega nombres, fechas o bromas internas. Grabado con precisión que dura décadas.</p>
-          </div>
-          <div class="feature reveal">
-            <span class="icon">🎁</span>
-            <h3 data-i18n="feat4.title">Empaque Listo para Regalar</h3>
-            <p data-i18n="feat4.p">Cada bola llega en una caja forrada de terciopelo con una tarjeta estilo manuscrita.</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -653,7 +595,6 @@
       es: {
         "meta.title": "Super Jingle Balls — Bolas Jingle Personalizadas para Cada Ocasión",
         "meta.desc": "Diseña tus propias jingle balls personalizadas. Elige colores, sonidos y grabados — el regalo perfecto para las fiestas.",
-        "nav.features": "Características",
         "nav.customize": "Personaliza",
         "nav.buy": "Comprar",
         "nav.cta": "Diseña la Tuya",
@@ -664,16 +605,6 @@
         "hero.cta2": "Diseñar Otra",
         "hero.alt": "Bolas navideñas personalizadas con lazos rojos colgadas de un árbol",
         "hero.caption": "Adornos Navideños Personalizados — ¡Pide los tuyos ahora!",
-        "feat.title": "¿Por Qué Jingle Balls Personalizadas?",
-        "feat.sub": "No son solo decoración — son una declaración. Esto es lo que hace especiales a las nuestras.",
-        "feat1.title": "Control Total de Color",
-        "feat1.p": "Elige entre 12 acabados de laca mezclados a mano — metálico, mate, glitter o fosforescente.",
-        "feat2.title": "Sonido Único",
-        "feat2.p": "Elige tu campana: plata clásica, bronce profundo o trineo suave. Afinadas a mano, probadas a oído.",
-        "feat3.title": "Grabado Láser",
-        "feat3.p": "Agrega nombres, fechas o bromas internas. Grabado con precisión que dura décadas.",
-        "feat4.title": "Empaque Listo para Regalar",
-        "feat4.p": "Cada bola llega en una caja forrada de terciopelo con una tarjeta estilo manuscrita.",
         "build.title": "Diseña Tu Bola",
         "build.sub": "Juégatela. Tu diseño se actualiza en vivo.",
         "build.h2": "Hazla tuya",
@@ -703,7 +634,6 @@
       en: {
         "meta.title": "Super Jingle Balls — Custom Jingle Balls for Every Occasion",
         "meta.desc": "Design your own custom jingle balls. Choose colors, sounds, and engravings — the perfect personalized gift for the holidays.",
-        "nav.features": "Features",
         "nav.customize": "Customize",
         "nav.buy": "Buy",
         "nav.cta": "Design Yours",
@@ -714,16 +644,6 @@
         "hero.cta2": "Design Another",
         "hero.alt": "Custom personalized Christmas jingle balls with red bows hanging on a tree",
         "hero.caption": "Personalized Christmas Ornaments — Order yours now!",
-        "feat.title": "Why Custom Jingle Balls?",
-        "feat.sub": "Not just decoration — a statement. Here's what makes ours special.",
-        "feat1.title": "Full Color Control",
-        "feat1.p": "Pick from 12 hand-mixed lacquer finishes — metallic, matte, glitter, or glow-in-the-dark.",
-        "feat2.title": "Signature Sound",
-        "feat2.p": "Choose your chime: classic silver, deep bronze, or soft sleigh. Tuned by hand, tested by ear.",
-        "feat3.title": "Laser Engraving",
-        "feat3.p": "Add names, dates, or inside jokes. Engraved with precision that lasts for decades.",
-        "feat4.title": "Gift-Ready Packaging",
-        "feat4.p": "Every ball arrives in a velvet-lined keepsake box with a handwritten-style card.",
         "build.title": "Design Your Ball",
         "build.sub": "Play with it. Your design updates live.",
         "build.h2": "Make it yours",
